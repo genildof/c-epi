@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  matricula: MyString
+  nome: MyString
+  cargo_id: 
+  cidade_id: 
+  admissao: 2013-09-18
+  desligamento: 2013-09-18
+
+two:
+  matricula: MyString
+  nome: MyString
+  cargo_id: 
+  cidade_id: 
+  admissao: 2013-09-18
+  desligamento: 2013-09-18

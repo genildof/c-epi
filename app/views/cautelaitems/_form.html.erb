@@ -1,0 +1,29 @@
+<%= form_for(@cautelaitem) do |f| %>
+  <% if @cautelaitem.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cautelaitem.errors.count, "error") %> prohibited this cautelaitem from being saved:</h2>
+
+      <ul>
+      <% @cautelaitem.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :material %><br>
+    <%= f.text_field :material %>
+  </div>
+  <div class="field">
+    <%= f.label :cautela %><br>
+    <%= f.text_field :cautela %>
+  </div>
+  <div class="field">
+    <%= f.label :quantidade %><br>
+    <%= f.number_field :quantidade %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

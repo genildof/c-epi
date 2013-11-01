@@ -1,0 +1,55 @@
+<%= simple_form_for @colaborador, :html => {:class => 'form-horizontal'} do |f| %>
+    <% if @colaborador.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@colaborador.errors.count, 'erro') %> impedindo esta ação:</h2>
+
+          <ul>
+            <% @colaborador.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <fieldset>
+      <div class="control-group">
+        <%= f.label :matricula, :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :matricula %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :nome, :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :nome %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :cargo, :class => 'control-label' %>
+        <div class="controls">
+          <%= f.collection_select :cargo_id, @cargos, :id, :nome %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :cidade, :class => 'control-label' %>
+        <div class="controls">
+          <%= f.select :cidade_id, @cidades.collect { |a| [a.nome, a.id] } %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :admissao, :class => 'control-label' %>
+        <div class="controls">
+          <%= f.date_select :admissao, {:order => [:day, :month, :year], :prompt => {:day => 'Select day', :month => 'Select month', :year => 'Select year'}}, {:class => 'date-select'} %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :desligado, :class => 'control-label' %>
+        <div class="controls">
+          <%= f.select :desligado, %w(NAO SIM) %>
+        </div>
+      </div>
+      <div class="form-actions">
+        <%= f.submit 'Salvar', :class => 'btn btn-primary' %>
+        <%= link_to 'Cancelar', colaboradors_path, :class => 'btn' %>
+      </div>
+    </fieldset>
+<% end %>

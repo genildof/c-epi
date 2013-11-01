@@ -1,0 +1,31 @@
+<%= simple_form_for @cargo, :html => {:class => 'form-horizontal'} do |f| %>
+    <% if @cargo.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@cargo.errors.count, 'erro') %> impedindo esta ação:</h2>
+
+          <ul>
+            <% @cargo.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <fieldset>
+      <div class="control-group">
+        <%= f.label :nome, :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :nome %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :periculosidade, :class => 'control-label' %>
+        <div class="controls">
+          <%= f.select :periculosidade, %w(NAO SIM) %>
+        </div>
+      </div>
+      <div class="form-actions">
+        <%= f.submit 'Salvar', :class => 'btn btn-primary' %>
+        <%= link_to 'Cancelar', cargos_path, :class => 'btn' %>
+      </div>
+    </fieldset>
+<% end %>

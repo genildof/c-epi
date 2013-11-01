@@ -1,0 +1,32 @@
+<%= render :partial => 'layouts/messages', flash: flash  %>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Login:</strong>
+  <%= @user.login %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @user.password %>
+</p>
+
+<p>
+  <strong>Perfil:</strong>
+  <%= @user.profile %>
+</p>
+
+<p>
+  <strong>Cidade:</strong>
+  <%= @user.cidade.nome %>
+</p>
+
+<div class="form-actions">
+  <%= link_to 'Editar', edit_user_path(@user), :class => 'btn' %>
+  <%= link_to 'Excluir', @user, method: :delete, data: {confirm: 'Confirma a exclusão?'}, :class => 'btn btn-danger' %>
+  <%= link_to 'Voltar', users_path, :class => 'btn btn-primary' %>
+</div>

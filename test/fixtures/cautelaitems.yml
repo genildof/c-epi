@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  material_id: 
+  cautela_id: 
+  quantidade: 1
+
+two:
+  material_id: 
+  cautela_id: 
+  quantidade: 1

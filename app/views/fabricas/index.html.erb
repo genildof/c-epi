@@ -1,0 +1,38 @@
+<%= render :partial => 'layouts/messages', flash: flash %>
+
+<h1>Fábricas (<%= @fabricas.count %>)</h1>
+
+<%= render :partial => 'layouts/tablesearch', locals: {:path => fabricas_path, :placeholder => 'Fábrica'} %>
+
+<table class="table table-striped"> <!-- table-condensed -->
+
+  <div class="pagination">  <!-- Try apple_pagination, digg_pagination -->
+    <%= will_paginate(@cautelas, renderer: BootstrapPagination::Rails) %>
+  </div>
+
+  <thead>
+  <tr>
+    <th>#</th>
+    <th>Nome</th>
+    <th>Estado</th>
+    <th>Created at</th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @fabricas.each do |fabrica| %>
+      <tr>
+        <td><%= link_to fabrica.id, fabrica %></td>
+        <td><%= link_to fabrica.nome, fabrica %></td>
+        <td><%= fabrica.estado %></td>
+        <td><%= fabrica.created_at.strftime('%d/%m/%Y') %></td>
+        <td><%= link_to 'Editar', edit_fabrica_path(fabrica), :class => 'btn btn-mini' %></td>
+        <td><%= link_to 'Excluir', fabrica, method: :delete, data: {confirm: 'Confirma a exclusão?'}, :class => 'btn btn-mini btn-danger' %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Nova Fábrica', new_fabrica_path, :class => 'btn' %>

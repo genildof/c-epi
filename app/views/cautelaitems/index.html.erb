@@ -1,0 +1,31 @@
+<h1>Listing cautelaitems</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Material</th>
+      <th>Cautela</th>
+      <th>Quantidade</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cautelaitems.each do |cautelaitem| %>
+      <tr>
+        <td><%= cautelaitem.material %></td>
+        <td><%= cautelaitem.cautela %></td>
+        <td><%= cautelaitem.quantidade %></td>
+        <td><%= link_to 'Show', cautelaitem %></td>
+        <td><%= link_to 'Edit', edit_cautelaitem_path(cautelaitem) %></td>
+        <td><%= link_to 'Destroy', cautelaitem, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Cautelaitem', new_cautelaitem_path %>

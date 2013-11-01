@@ -1,0 +1,35 @@
+<%= simple_form_for @fabrica, :html => {:class => 'form-horizontal'} do |f| %>
+    <% if @fabrica.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@fabrica.errors.count, 'erro') %> impedindo esta ação:</h2>
+
+          <ul>
+            <% @fabrica.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <fieldset>
+      <!--
+      legend>%= controller.action_name.capitalize %> Fabrica</legend
+      -->
+      <div class="control-group">
+        <%= f.label :nome, :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :nome, :class => 'text-field', :placeholder => 'Nome da nova Fábrica' %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :estado, :class => 'control-label' %>
+        <div class="controls">
+          <%= f.select :estado, %w(AC AL AP AM BA CE DF ES GO MA MT MS MG PA PB PE PI RJ RN RS
+                               RO RR SC SP SE TO PB PR PE PI RJ RN RS RO RR SC SP SE TO), :class => 'text-field' %>
+        </div>
+      </div>
+      <div class="form-actions">
+        <%= f.submit 'Salvar', :class => 'btn btn-primary' %>
+        <%= link_to 'Cancelar', fabricas_path, :class => 'btn' %>
+      </div>
+    </fieldset>
+<% end %>

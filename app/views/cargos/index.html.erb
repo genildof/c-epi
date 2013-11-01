@@ -1,0 +1,39 @@
+<%= render :partial => 'layouts/messages', flash: flash %>
+
+<h1>Cargos (<%= @cargos.count %>)</h1>
+
+<%= render :partial => 'layouts/tablesearch', locals: {:path => cargos_path, :placeholder => 'Cargo'} %>
+
+<table class="table table-striped">
+
+  <div class="pagination">  <!-- Try apple_pagination, digg_pagination -->
+    <%= will_paginate(@cautelas, renderer: BootstrapPagination::Rails) %>
+  </div>
+
+  <thead>
+  <tr>
+    <th>#</th>
+    <th>Nome</th>
+    <th>Periculosidade</th>
+    <th>Created at</th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @cargos.each do |cargo| %>
+      <tr>
+        <td><%= link_to cargo.id, cargo %></td>
+        <td><%= link_to cargo.nome, cargo %></td>
+        <td><%= cargo.periculosidade %></td>
+        <td><%= cargo.created_at.strftime('%d/%m/%Y') %></td>
+        <td><%= link_to 'Editar', edit_cargo_path(cargo), :class => 'btn btn-mini' %></td>
+        <td><%= link_to 'Excluir', cargo, method: :delete, data: {confirm: 'Confirma a exclusão?'}, :class => 'btn btn-mini btn-danger' %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to 'Novo Cargo', new_cargo_path, :class => 'btn' %>

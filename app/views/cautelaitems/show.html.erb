@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Material:</strong>
+  <%= @cautelaitem.material %>
+</p>
+
+<p>
+  <strong>Cautela:</strong>
+  <%= @cautelaitem.cautela %>
+</p>
+
+<p>
+  <strong>Quantidade:</strong>
+  <%= @cautelaitem.quantidade %>
+</p>
+
+<%= link_to 'Edit', edit_cautela_cautelaitem_path(@cautelaitem) %> |
+<%= link_to 'Back', cautela_cautelaitem_path %>

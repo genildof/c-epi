@@ -1,0 +1,64 @@
+<h1>Validando Ficha de Cautela</h1>
+
+<br>
+
+<%= simple_form_for @cautela, :html => {:class => 'form-horizontal'} do |f| %>
+
+    <div class="row">
+      <div class="span5">
+
+        <p>
+          <strong>Colaborador:</strong>
+          <%= @cautela.colaborador.nome %>
+        </p>
+
+        <p>
+          <strong>Operador:</strong>
+          <%= @cautela.user.nome %>
+        </p>
+
+        <p>
+          <strong>Data:</strong>
+          <%= @cautela.data %>
+        </p>
+
+        <div class="control-group">
+          <%= f.label :status, :class => 'control-label' %>
+          <div class="controls">
+            <%= f.select :status, %w(ARQUIVO_LOCAL ENVIADO_CDOC) %>
+          </div>
+        </div>
+
+
+        <div class="control-group">
+          <strong>Upload da cautela assinada pelo colaborador (PDF):</strong>
+
+          <div>
+            <%= f.file_field :anexo %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <%= f.label :comentarios, :class => 'control-label' %>
+          <div class="controls">
+            <%= f.text_area :comentarios, :rows => 2, :cols => 70 %>
+          </div>
+        </div>
+        <br>
+        <%= render :partial => 'layouts/messages', flash: flash %>
+
+      </div>
+
+      <div class="span7">
+        <%= render :partial => 'cautelaitems', locals: {:validating => true} %>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= link_to 'Voltar', cautelas_path, :class => 'btn' %>
+      <%= f.submit 'Enviar', :class => 'btn btn-primary' %>
+    </div>
+
+
+<% end %>
+

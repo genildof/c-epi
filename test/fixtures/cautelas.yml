@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  colaborador_id: 
+  operador_id: 
+  data: 2013-09-18
+  status: MyString
+  anexo: MyString
+  comentarios: MyText
+
+two:
+  colaborador_id: 
+  operador_id: 
+  data: 2013-09-18
+  status: MyString
+  anexo: MyString
+  comentarios: MyText

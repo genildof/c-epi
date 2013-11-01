@@ -1,0 +1,22 @@
+<%= render :partial => 'layouts/messages', flash: flash  %>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @fabrica.nome %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @fabrica.estado %>
+</p>
+
+<p>
+  <b>Created at:</b>
+  <%= @fabrica.created_at.strftime('%d/%m/%Y - %H:%M') %>
+</p>
+
+<div class="form-actions">
+  <%= link_to 'Editar', edit_fabrica_path(@fabrica), :class => 'btn' %>
+  <%= link_to 'Excluir', @fabrica, method: :delete, data: {confirm: 'Confirma a exclusão?'}, :class => 'btn btn-danger' %>
+  <%= link_to 'Voltar', fabricas_path, :class => 'btn' %>
+</div>

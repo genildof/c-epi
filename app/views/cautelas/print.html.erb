@@ -1,0 +1,86 @@
+<div class="row">
+  <div class="span2">
+    <%= image_tag 'gvt_logo.gif' %></div>
+  <div class="span10" align='center'>
+    <h3>FICHA DE CAUTELA</h3>
+  </div>
+</div>
+
+<p>
+  <strong>Colaborador:</strong>
+  <%= @cautela.colaborador.nome %>
+</p>
+
+<p>
+  <strong>Matrícula:</strong>
+  <%= @cautela.colaborador.matricula %>
+</p>
+
+<p>
+  <strong>Cargo:</strong>
+  <%= @cautela.colaborador.cargo.nome %>
+</p>
+
+<p>
+  <strong>Operador:</strong>
+  <%= @cautela.user.name %>
+</p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @cautela.data %>
+</p>
+
+<br>
+
+<p>
+  <strong>TERMO DE RESPONSABILIDADE</strong>
+</p>
+
+<br>
+
+<p>
+  Ficam sob minha responsabilidade os E.P.I.’s, E.P.C.’s e acessórios abaixo relacionados, que deverão
+  ser devolvidos tão logo forem solicitados. Reconheço que recebi orientações sobre o uso adequado
+  dos referidos equipamentos e comprometo-me com a guarda e conservação dos mesmos.
+</p>
+
+<br>
+
+<table class='table table-condensed'>
+  <thead>
+  <tr>
+    <th>Tipo</th>
+    <th>Material</th>
+    <th>Descrição</th>
+    <th>CA / Serial</th>
+    <th>Validade</th>
+    <th>Quantidade</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @cautela.cautelaitems.each do |item| %>
+      <tr>
+        <td><%= item.material.tipo %></td>
+        <td><%= item.material.codigo %></td>
+        <td><%= item.material.nome %></td>
+        <td><%= item.serial %></td>
+        <td><%= item.validade %></td>
+        <td><%= item.quantidade %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<p>
+  <strong>Observações:</strong>
+  <%= @cautela.comentarios %>
+</p>
+
+<br>
+
+<p align='center'>__________________________________</p>
+
+<p align='center'><%= @cautela.colaborador.nome %> - <%= @cautela.colaborador.matricula %></p>

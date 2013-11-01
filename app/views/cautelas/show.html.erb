@@ -1,0 +1,55 @@
+<%= render :partial => 'layouts/messages', flash: flash %>
+
+<%= image_tag 'okay.png' if @cautela.is_valid? %>
+
+<p/>
+
+<div class="row">
+  <div class="span4">
+    <p>
+      <strong>Colaborador:</strong>
+      <%= @cautela.colaborador.nome %>
+    </p>
+
+    <p>
+      <strong>user:</strong>
+      <%= @cautela.user.name %>
+    </p>
+
+    <p>
+      <strong>Data:</strong>
+      <%= @cautela.data %>
+    </p>
+
+    <p><strong>Status:</strong>
+      <%= @cautela.status %>
+    </p>
+
+    <p>
+      <strong>Comentarios:</strong>
+      <%= @cautela.comentarios %>
+    </p>
+
+    <p>
+      <strong>Anexos:</strong>
+    </p>
+
+    <p>
+      <%= link_to image_tag('pdf_icon.png'), @cautela.anexo.url, :format => 'pdf', :target => '_blank' if @cautela.is_valid? %>
+    </p>
+
+    <br>
+
+  </div>
+  <div class="span8">
+    <% validating = false %> <!-- How to pass variable to partial, attention to render :partial => 'cautelaitems', just works by this way -->
+    <%= render :partial => 'cautelaitems', locals: {cautela: @cautela, :validating => t(validating)} %>
+  </div>
+</div>
+
+<div class="form-actions">
+  <%= link_to 'Voltar', cautelas_path, :class => 'btn' %><!--Todo: implementar redirect_to :back -->
+  <%= link_to 'Validar', validate_cautela_path, :class => 'btn btn-primary' if @cautela.can_validate? %> <!--Todo: está validando sem itens -->
+  <%= link_to 'Editar', edit_cautela_path, :class => 'btn' if @cautela.can_validate? %>
+  <%= link_to 'Visualizar', print_cautela_path, :target => '_blank', :class => 'btn' if @cautela.can_validate? %>
+</div>

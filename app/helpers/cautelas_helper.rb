@@ -1,0 +1,2 @@
+module CautelasHelper
+end

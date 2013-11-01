@@ -1,0 +1,22 @@
+<%= render :partial => 'layouts/messages', flash: flash  %>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @cidade.nome %>
+</p>
+
+<p>
+  <strong>Fabrica:</strong>
+  <%= @cidade.fabrica.nome %>
+</p>
+
+<p>
+  <b>Created at:</b>
+  <%= @cidade.created_at.strftime('%d/%m/%Y - %H:%M') %>
+</p>
+
+<div class="form-actions">
+  <%= link_to 'Editar', edit_cidade_path(@cidade), :class => 'btn' %>
+  <%= link_to 'Excluir', @cidade, method: :delete, data: {confirm: 'Confirma a exclusão?'}, :class => 'btn btn-danger' %>
+  <%= link_to 'Voltar', cidades_path, :class => 'btn' %>
+</div>
