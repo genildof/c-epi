@@ -1,26 +1,26 @@
 class User < ActiveRecord::Base
   before_save { self.email = email.downcase }
   before_create :create_remember_token
+  before_validation :normalize_name, on: [:create, :update]
 
+  validates :name, presence: true, length: {maximum: 50}
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true,
+            format: {with: VALID_EMAIL_REGEX},
+            uniqueness: {case_sensitive: false}
+  has_secure_password
+  validates :password, :presence => true, length: {minimum: 6}
+  validates :login, :presence => true, :uniqueness => true, :length => {:in => 3..20}
+  validates_presence_of :profile
+  validates_presence_of :cidade
 
   has_secure_password validations: false
 
   belongs_to :cidade
-
   has_many :cautelas, dependent: :restrict_with_exception
 
-  before_validation :normalize_name, on: [:create, :update]
 
-
-  EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
-  validates_presence_of :name
-  validates :login, :presence => true, :uniqueness => true, :length => { :in => 3..20 }
-  validates_presence_of :password_digest
-  validates_presence_of :profile
-  validates_presence_of :cidade
-  validates :email, :presence => true, :uniqueness => true, :format => EMAIL_REGEX
-
-  validates :login, :length => {:minimum => 8, :too_short => '%{count} characters is the minimum allowed'}
+  #validates :login, :length => {:minimum => 8, :too_short => '%{count} characters is the minimum allowed'}
 
   def User.new_remember_token
     SecureRandom.urlsafe_base64
