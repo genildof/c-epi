@@ -5,8 +5,9 @@ require 'csv'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
-Bundler.require(:default, Rails.env)
+#Bundler.require(:default, Rails.env)
 
+Bundler.require(*Rails.groups(assets: %w(development test)))
 
 # this should be auto-included with the Bundler.require :default, Rails.env, but when not happening enable it here - Genildo
 # require 'jquery-rails'
@@ -36,6 +37,6 @@ module CEpi
     # forcing SSL connection in your application config file:
     #config.force_ssl = true
 
-
+    config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
   end
 end

@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20131001012519) do
     t.integer  "material_id"
     t.integer  "cautela_id"
     t.string   "serial"
-    t.date     "validade",    default: '2015-10-31'
+    t.date     "validade",    default: '2015-11-02'
     t.integer  "quantidade",  default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 20131001012519) do
 
   create_table "users", force: true do |t|
     t.string   "name"
-    t.string   "login"
+    t.string   "username"
     t.string   "password_digest"
     t.string   "profile"
     t.string   "email"

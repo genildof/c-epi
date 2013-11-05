@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update]
+  before_action :admin_user, only: :destroy
+
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :set_cidades, only: [:new, :create, :edit, :update]
 
@@ -79,6 +83,9 @@ class UsersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:name, :login, :email, :password, :profile, :cidade_id)
+    params.require(:user).permit(:name, :username, :email, :password, :password_confirmation, :profile, :cidade_id)
   end
 end
+
+
+

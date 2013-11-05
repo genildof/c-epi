@@ -2,37 +2,26 @@ CEpi::Application.routes.draw do
 
   # lot of informations about on http://guides.rubyonrails.org/routing.html
 
+  resources :cautelas do
+    resources :cautelaitems
+    member do
+      get :validate, :print
+    end
+  end
+  resources :sessions, only: [:new, :create, :destroy]
   resources :users
   resources :colaboradors
   resources :materials
   resources :cidades
   resources :cargos
   resources :fabricas
-
-  resources :cautelas do
-    resources :cautelaitems
-
-    # Adding Member Routes for 'validate' action
-    member do
-      get 'validate'
-      get 'print'
-    end
-
-  end
-
-  resources :sessions, only: [:new, :create, :destroy]
-
-
   root 'static_pages#home'
-  match '/help',    to: 'static_pages#help',    via: 'get'
-  match '/about',   to: 'static_pages#about',   via: 'get'
+  match '/signup', to: 'users#new', via: 'get'
+  match '/signin', to: 'sessions#new', via: 'get'
+  match '/signout', to: 'sessions#destroy', via: 'delete'
+  match '/help', to: 'static_pages#help', via: 'get'
+  match '/about', to: 'static_pages#about', via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
-
-
-  match '/signin',  to: 'sessions#new',         via: 'get'
-  match '/signout', to: 'sessions#destroy',     via: 'delete'
-
-  #root 'cautelas#index'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

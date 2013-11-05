@@ -1,15 +1,7 @@
 <%= simple_form_for @user, :html => {:class => 'form-horizontal'} do |f| %>
-    <% if @user.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@user.errors.count, 'erro') %> impedindo esta ação:</h2>
 
-          <ul>
-            <% @user.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
+    <%= render 'shared/error_messages', object: f.object %>
+
     <fieldset>
       <div class="control-group">
         <%= f.label :name, :class => 'control-label' %>
@@ -18,15 +10,21 @@
         </div>
       </div>
       <div class="control-group">
-        <%= f.label :login, :class => 'control-label' %>
+        <%= f.label :username, :class => 'control-label' %>
         <div class="controls">
-          <%= f.text_field :login %>
+          <%= f.text_field :username %>
         </div>
       </div>
       <div class="control-group">
         <%= f.label :password, :class => 'control-label' %>
         <div class="controls">
           <%= f.text_field :password %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :password, :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :password_confirmation %>
         </div>
       </div>
       <div class="control-group">

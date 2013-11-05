@@ -1,13 +1,14 @@
+<% provide(:title, 'Página Inicial') %>
+
 <div class="center hero-unit">
-  <h1>Welcome to the C-EPI App</h1>
+  <h1>C-EPI Application</h1>
 
   <h2>
-    This is the home page for the
-    <a href="http://railstutorial.org/">Gestão de EPI's e Cautelas</a>
-    application.
+    Página inicial da aplicação
+    <a href="http://railstutorial.org/">Controle de EPI's e Cautelas</a>.
   </h2>
 
-  <%= link_to 'Sign up now!', '#', class: 'btn btn-large btn-primary' %>
+  <%= link_to "Acesse agora!", signup_path, class: "btn btn-large btn-primary" %>
 </div>
 
 <%= link_to image_tag('gvt_logo.gif', alt: 'GVT'), 'http://intranet/' %>

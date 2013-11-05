@@ -38,9 +38,9 @@ Material.create([{codigo: '900111', tipo: 'FERRAMENTAL', nome: 'ESCADA 9 METROS'
                  {codigo: '900161', tipo: 'EPI', nome: 'BOTINA'},
                  {codigo: '900171', tipo: 'EPI', nome: 'CAPA DE CHUVA'}])
 
-User.create([{name: 'MARCIO TORRES GUEDES', login: 'g0038389', password: 'gvt25', profile: 'OPERATOR', cidade: cidades.first},
-             {name: 'NELSON POLLETO', login: 'g0038389', password: 'gvt25', profile: 'ADVANCED', cidade: cidades.first},
-             {name: 'GENILDO FERREIRA', login: 'g0001959', password: 'admin', profile: 'ADMIN', cidade: cidades.first}])
+User.create([{name: 'MARCIO TORRES GUEDES', username: 'g0038389', password: 'gvt25', profile: 'OPERATOR', cidade: cidades.first},
+             {name: 'NELSON POLLETO', username: 'g0011389', password: 'gvt25', profile: 'ADVANCED', cidade: cidades.first},
+             {name: 'GENILDO FERREIRA', username: 'g0001959', password: 'genildof', profile: 'ADMIN', cidade: cidades.first}])
 
 Colaborador.create ([{matricula: '11320', nome: 'ANDERSON SILVA', cargo: positions.first, cidade: cidades.first, admissao: Time.now - 6.month},
                      {matricula: '11320', nome: 'NILTON CARLOS DE PÁDUA', cargo: positions.first, cidade: cidades.first, admissao: Time.now - 1.year},

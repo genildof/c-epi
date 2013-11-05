@@ -1,4 +1,6 @@
-<%= render :partial => 'layouts/messages', flash: flash  %>
+<% provide(:title, @user.name) %>
+
+<%= render :partial => 'shared/messages', flash: flash  %>
 
 <p>
   <strong>Nome:</strong>
@@ -7,7 +9,7 @@
 
 <p>
   <strong>Login:</strong>
-  <%= @user.login %>
+  <%= @user.username %>
 </p>
 
 <p>

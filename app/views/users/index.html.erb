@@ -1,4 +1,6 @@
-<%= render :partial => 'layouts/messages', flash: flash %>
+<% provide(:title, 'Usuários') %>
+
+<%= render :partial => 'shared/messages', flash: flash %>
 
 <h1>Usuários (<%= @users.count %>)</h1>
 
@@ -28,7 +30,7 @@
       <tr>
         <td><%= link_to user.id, user %></td>
         <td><%= link_to user.name, user %></td>
-        <td><%= link_to user.login, user %></td>
+        <td><%= link_to user.username, user %></td>
         <td><%= user.profile %></td>
         <td><%= user.cidade.nome %></td>
         <td><%= user.created_at.strftime('%d/%m/%Y') %></td>
