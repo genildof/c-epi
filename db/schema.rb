@@ -14,18 +14,18 @@
 ActiveRecord::Schema.define(version: 20131001012519) do
 
   create_table "cargos", force: true do |t|
-    t.string   "nome"
-    t.string   "periculosidade", default: "NAO", null: false
+    t.string "nome"
+    t.string "periculosidade", default: "NAO", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "cautelaitems", force: true do |t|
-    t.integer  "material_id"
-    t.integer  "cautela_id"
-    t.string   "serial"
-    t.date     "validade",    default: '2015-11-02'
-    t.integer  "quantidade",  default: 1
+    t.integer "material_id"
+    t.integer "cautela_id"
+    t.string "serial"
+    t.date "validade", default: '2015-11-02'
+    t.integer "quantidade", default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -34,12 +34,12 @@ ActiveRecord::Schema.define(version: 20131001012519) do
   add_index "cautelaitems", ["material_id"], name: "index_cautelaitems_on_material_id"
 
   create_table "cautelas", force: true do |t|
-    t.integer  "colaborador_id"
-    t.integer  "user_id"
-    t.date     "data"
-    t.string   "status"
-    t.string   "anexo"
-    t.text     "comentarios"
+    t.integer "colaborador_id"
+    t.integer "user_id"
+    t.date "data"
+    t.string "status"
+    t.string "anexo"
+    t.text "comentarios"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -48,19 +48,19 @@ ActiveRecord::Schema.define(version: 20131001012519) do
   add_index "cautelas", ["user_id"], name: "index_cautelas_on_user_id"
 
   create_table "cidades", force: true do |t|
-    t.string   "nome"
-    t.integer  "fabrica_id", null: false
+    t.string "nome"
+    t.integer "fabrica_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "colaboradors", force: true do |t|
-    t.string   "matricula"
-    t.string   "nome"
-    t.integer  "cargo_id"
-    t.integer  "cidade_id"
-    t.date     "admissao"
-    t.string   "desligado",  default: "NAO"
+    t.string "matricula"
+    t.string "nome"
+    t.integer "cargo_id"
+    t.integer "cidade_id"
+    t.date "admissao"
+    t.string "desligado", default: "NAO"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -69,28 +69,28 @@ ActiveRecord::Schema.define(version: 20131001012519) do
   add_index "colaboradors", ["cidade_id"], name: "index_colaboradors_on_cidade_id"
 
   create_table "fabricas", force: true do |t|
-    t.string   "nome"
-    t.string   "estado"
+    t.string "nome"
+    t.string "estado"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "materials", force: true do |t|
-    t.string   "tipo",       default: "EPI"
-    t.string   "codigo"
-    t.string   "nome"
+    t.string "tipo", default: "EPI"
+    t.string "codigo"
+    t.string "nome"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
-    t.string   "name"
-    t.string   "username"
-    t.string   "password_digest"
-    t.string   "profile"
-    t.string   "email"
-    t.string   "remember_token"
-    t.integer  "cidade_id"
+    t.string "name"
+    t.string "username"
+    t.string "password_digest"
+    t.string "profile"
+    t.string "email"
+    t.string "remember_token"
+    t.integer "cidade_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

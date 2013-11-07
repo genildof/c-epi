@@ -1,7 +1,5 @@
 <% provide(:title, 'Usuários') %>
 
-<%= render :partial => 'shared/messages', flash: flash %>
-
 <h1>Usuários (<%= @users.count %>)</h1>
 
 <%= render :partial => 'layouts/tablesearch', locals: {:path => users_path, :placeholder => 'Usuário'} %>

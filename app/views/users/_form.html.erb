@@ -1,53 +1,56 @@
-<%= simple_form_for @user, :html => {:class => 'form-horizontal'} do |f| %>
+<div class="row">
+  <div class="span6 offset3">
 
-    <%= render 'shared/error_messages', object: f.object %>
+    <%= simple_form_for @user, :html => {:class => 'form-horizontal'} do |f| %>
 
-    <fieldset>
-      <div class="control-group">
-        <%= f.label :name, :class => 'control-label' %>
-        <div class="controls">
-          <%= f.text_field :name %>
+        <%= render 'shared/error_messages', object: f.object %>
+
+        <div class="control-group">
+          <%= f.label :name, :class => 'control-label' %>
+          <div class="controls">
+            <%= f.text_field :name %>
+          </div>
         </div>
-      </div>
-      <div class="control-group">
-        <%= f.label :username, :class => 'control-label' %>
-        <div class="controls">
-          <%= f.text_field :username %>
+        <div class="control-group">
+          <%= f.label :username, :class => 'control-label' %>
+          <div class="controls">
+            <%= f.text_field :username %>
+          </div>
         </div>
-      </div>
-      <div class="control-group">
-        <%= f.label :password, :class => 'control-label' %>
-        <div class="controls">
-          <%= f.text_field :password %>
+        <div class="control-group">
+          <%= f.label :password, :class => 'control-label' %>
+          <div class="controls">
+            <%= f.text_field :password %>
+          </div>
         </div>
-      </div>
-      <div class="control-group">
-        <%= f.label :password, :class => 'control-label' %>
-        <div class="controls">
-          <%= f.text_field :password_confirmation %>
+        <div class="control-group">
+          <%= f.label :password, :class => 'control-label' %>
+          <div class="controls">
+            <%= f.text_field :password_confirmation %>
+          </div>
         </div>
-      </div>
-      <div class="control-group">
-        <%= f.label :email, :class => 'control-label' %>
-        <div class="controls">
-          <%= f.text_field :email %>
+        <div class="control-group">
+          <%= f.label :email, :class => 'control-label' %>
+          <div class="controls">
+            <%= f.text_field :email %>
+          </div>
         </div>
-      </div>
-      <div class="control-group">
-        <%= f.label :profile, :class => 'control-label' %>
-        <div class="controls">
-          <%= f.select :profile, %w(OPERATOR ADVANCED ADMIN) %>
+        <div class="control-group">
+          <%= f.label :profile, :class => 'control-label' %>
+          <div class="controls">
+            <%= f.select :profile, %w(OPERATOR ADVANCED ADMIN) %>
+          </div>
         </div>
-      </div>
-      <div class="control-group">
-        <%= f.label :cidade, :class => 'control-label' %>
-        <div class="controls">
-          <%= f.select :cidade_id, @cidades.collect { |a| [a.nome, a.id] } %>
+        <div class="control-group">
+          <%= f.label :cidade, :class => 'control-label' %>
+          <div class="controls">
+            <%= f.select :cidade_id, @cidades.collect { |a| [a.nome, a.id] } %>
+          </div>
         </div>
-      </div>
-      <div class="form-actions">
-        <%= f.submit 'Salvar', :class => 'btn btn-primary' %>
-        <%= link_to 'Cancelar', users_path, :class => 'btn' %>
-      </div>
-    </fieldset>
-<% end %>
+        <div class="form-actions">
+          <%= f.submit 'Salvar', :class => 'btn btn-primary' %>
+          <%= link_to 'Cancelar', users_path, :class => 'btn' %>
+        </div>
+    <% end %>
+  </div>
+</div>

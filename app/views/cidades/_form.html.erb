@@ -1,31 +1,26 @@
-<%= simple_form_for @cidade, :html => {:class => 'form-horizontal'} do |f| %>
-    <% if @cidade.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@cidade.errors.count, 'erro') %> impedindo esta ação:</h2>
+<div class="row">
+  <div class="span6 offset3">
 
-          <ul>
-            <% @cidade.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
+    <%= simple_form_for @cidade, :html => {:class => 'form-horizontal'} do |f| %>
+
+        <%= render 'shared/error_messages', object: f.object %>
+
+        <div class="control-group">
+          <%= f.label :nome, :class => 'control-label' %>
+          <div class="controls">
+            <%= f.text_field :nome %>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label :fabrica, :class => 'control-label' %>
+          <div class="controls">
+            <%= f.select :fabrica_id, @fabricas.collect { |a| [a.nome, a.id] } %>
+          </div>
+        </div>
+        <div class="form-actions">
+          <%= f.submit 'Salvar', :class => 'btn btn-primary' %>
+          <%= link_to 'Cancelar', cidades_path, :class => 'btn' %>
         </div>
     <% end %>
-    <fieldset>
-      <div class="control-group">
-        <%= f.label :nome, :class => 'control-label' %>
-        <div class="controls">
-          <%= f.text_field :nome %>
-        </div>
-      </div>
-      <div class="control-group">
-        <%= f.label :fabrica, :class => 'control-label' %>
-        <div class="controls">
-          <%= f.select :fabrica_id, @fabricas.collect { |a| [a.nome, a.id] } %>
-        </div>
-      </div>
-      <div class="form-actions">
-        <%= f.submit 'Salvar', :class => 'btn btn-primary' %>
-        <%= link_to 'Cancelar', cidades_path, :class => 'btn' %>
-      </div>
-    </fieldset>
-<% end %>
+  </div>
+</div>

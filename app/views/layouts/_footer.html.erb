@@ -1,13 +1,16 @@
 <footer class="footer">
   <small>
-    <a href="http://cpsmr1-5042:3000/">C-EPI</a>
-    by CIPA Campinas SP - Gestão 2013/2014
+    <%= link_to 'C-EPI Application', root_path %>
+    by CIPA Campinas
   </small>
-  <nav>
-    <ul>
-      <li><%= link_to 'Sobre',   about_path %></li>
-      <li><%= link_to 'Contato', contact_path %></li>
-      <li><a href="http://intranet/">Intranet</a></li>
-    </ul>
-  </nav>
+
+  <% unless !signed_in? %>
+      <nav>
+        <ul>
+          <li><%= link_to 'CIPA Campinas', root_path %></li>
+          <li><%= link_to 'Sobre', about_path %></li>
+          <li><%= link_to 'Rodadmap', about_path %></li>
+        </ul>
+      </nav>
+  <% end %>
 </footer>

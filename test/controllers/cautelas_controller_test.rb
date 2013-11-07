@@ -18,7 +18,7 @@ class CautelasControllerTest < ActionController::TestCase
 
   test "should create cautela" do
     assert_difference('Cautela.count') do
-      post :create, cautela: { anexo: @cautela.anexo, colaborador_id: @cautela.colaborador_id, comentarios: @cautela.comentarios, data: @cautela.data, operador_id: @cautela.operador_id, status: @cautela.status }
+      post :create, cautela: {anexo: @cautela.anexo, colaborador_id: @cautela.colaborador_id, comentarios: @cautela.comentarios, data: @cautela.data, operador_id: @cautela.operador_id, status: @cautela.status}
     end
 
     assert_redirected_to cautela_path(assigns(:cautela))
@@ -35,7 +35,7 @@ class CautelasControllerTest < ActionController::TestCase
   end
 
   test "should update cautela" do
-    patch :update, id: @cautela, cautela: { anexo: @cautela.anexo, colaborador_id: @cautela.colaborador_id, comentarios: @cautela.comentarios, data: @cautela.data, operador_id: @cautela.operador_id, status: @cautela.status }
+    patch :update, id: @cautela, cautela: {anexo: @cautela.anexo, colaborador_id: @cautela.colaborador_id, comentarios: @cautela.comentarios, data: @cautela.data, operador_id: @cautela.operador_id, status: @cautela.status}
     assert_redirected_to cautela_path(assigns(:cautela))
   end
 

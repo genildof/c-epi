@@ -18,7 +18,7 @@ class ColaboradorsControllerTest < ActionController::TestCase
 
   test "should create colaborador" do
     assert_difference('Colaborador.count') do
-      post :create, colaborador: { admissao: @colaborador.admissao, cargo_id: @colaborador.cargo_id, cidade_id: @colaborador.cidade_id, desligamento: @colaborador.desligamento, matricula: @colaborador.matricula, nome: @colaborador.nome }
+      post :create, colaborador: {admissao: @colaborador.admissao, cargo_id: @colaborador.cargo_id, cidade_id: @colaborador.cidade_id, desligamento: @colaborador.desligamento, matricula: @colaborador.matricula, nome: @colaborador.nome}
     end
 
     assert_redirected_to colaborador_path(assigns(:colaborador))
@@ -35,7 +35,7 @@ class ColaboradorsControllerTest < ActionController::TestCase
   end
 
   test "should update colaborador" do
-    patch :update, id: @colaborador, colaborador: { admissao: @colaborador.admissao, cargo_id: @colaborador.cargo_id, cidade_id: @colaborador.cidade_id, desligamento: @colaborador.desligamento, matricula: @colaborador.matricula, nome: @colaborador.nome }
+    patch :update, id: @colaborador, colaborador: {admissao: @colaborador.admissao, cargo_id: @colaborador.cargo_id, cidade_id: @colaborador.cidade_id, desligamento: @colaborador.desligamento, matricula: @colaborador.matricula, nome: @colaborador.nome}
     assert_redirected_to colaborador_path(assigns(:colaborador))
   end
 

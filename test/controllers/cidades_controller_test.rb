@@ -18,7 +18,7 @@ class CidadesControllerTest < ActionController::TestCase
 
   test "should create cidade" do
     assert_difference('Cidade.count') do
-      post :create, cidade: { fabrica_id: @cidade.fabrica_id, nome: @cidade.nome }
+      post :create, cidade: {fabrica_id: @cidade.fabrica_id, nome: @cidade.nome}
     end
 
     assert_redirected_to cidade_path(assigns(:cidade))
@@ -35,7 +35,7 @@ class CidadesControllerTest < ActionController::TestCase
   end
 
   test "should update cidade" do
-    patch :update, id: @cidade, cidade: { fabrica_id: @cidade.fabrica_id, nome: @cidade.nome }
+    patch :update, id: @cidade, cidade: {fabrica_id: @cidade.fabrica_id, nome: @cidade.nome}
     assert_redirected_to cidade_path(assigns(:cidade))
   end
 

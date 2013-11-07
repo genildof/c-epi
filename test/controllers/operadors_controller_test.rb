@@ -18,7 +18,7 @@ class OperadorsControllerTest < ActionController::TestCase
 
   test "should create operador" do
     assert_difference('Operador.count') do
-      post :create, operador: { cidade_id: @operador.cidade_id, login: @operador.login, nome: @operador.nome, password: @operador.password, perfil: @operador.perfil }
+      post :create, operador: {cidade_id: @operador.cidade_id, login: @operador.login, nome: @operador.nome, password: @operador.password, perfil: @operador.perfil}
     end
 
     assert_redirected_to operador_path(assigns(:operador))
@@ -35,7 +35,7 @@ class OperadorsControllerTest < ActionController::TestCase
   end
 
   test "should update operador" do
-    patch :update, id: @operador, operador: { cidade_id: @operador.cidade_id, login: @operador.login, nome: @operador.nome, password: @operador.password, perfil: @operador.perfil }
+    patch :update, id: @operador, operador: {cidade_id: @operador.cidade_id, login: @operador.login, nome: @operador.nome, password: @operador.password, perfil: @operador.perfil}
     assert_redirected_to operador_path(assigns(:operador))
   end
 

@@ -1,37 +1,43 @@
-<%= render :partial => 'layouts/messages', flash: flash  %>
+<% provide(:title, @colaborador.nome) %>
 
-<p>
-  <strong>Matricula:</strong>
-  <%= @colaborador.matricula %>
-</p>
 
-<p>
-  <strong>Nome:</strong>
-  <%= @colaborador.nome %>
-</p>
+<div class="row">
+  <div class="span6 offset3">
 
-<p>
-  <strong>Cargo:</strong>
-  <%= @colaborador.cargo.nome %>
-</p>
+    <p>
+      <strong>Matricula:</strong>
+      <%= @colaborador.matricula %>
+    </p>
 
-<p>
-  <strong>Cidade:</strong>
-  <%= @colaborador.cidade.nome %>
-</p>
+    <p>
+      <strong>Nome:</strong>
+      <%= @colaborador.nome %>
+    </p>
 
-<p>
-  <strong>Admissao:</strong>
-  <%= @colaborador.admissao %>
-</p>
+    <p>
+      <strong>Cargo:</strong>
+      <%= @colaborador.cargo.nome %>
+    </p>
 
-<p>
-  <strong>Desligado:</strong>
-  <%= @colaborador.desligado %>
-</p>
+    <p>
+      <strong>Cidade:</strong>
+      <%= @colaborador.cidade.nome %>
+    </p>
 
-<div class="form-actions">
-  <%= link_to 'Editar', edit_colaborador_path(@colaborador), :class => 'btn' %>
-  <%= link_to 'Excluir', @colaborador, method: :delete, data: {confirm: 'Confirma a exclusão?'}, :class => 'btn btn-danger' %>
-  <%= link_to 'Voltar', colaboradors_path, :class => 'btn' %>
+    <p>
+      <strong>Admissao:</strong>
+      <%= @colaborador.admissao %>
+    </p>
+
+    <p>
+      <strong>Desligado:</strong>
+      <%= @colaborador.desligado %>
+    </p>
+
+    <div class="form-actions">
+      <%= link_to 'Editar', edit_colaborador_path(@colaborador), :class => 'btn' %>
+      <%= link_to 'Excluir', @colaborador, method: :delete, data: {confirm: 'Confirma a exclusão?'}, :class => 'btn btn-danger' %>
+      <%= link_to 'Voltar', colaboradors_path, :class => 'btn' %>
+    </div>
+  </div>
 </div>

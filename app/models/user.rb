@@ -27,6 +27,10 @@ class User < ActiveRecord::Base
     Digest::SHA1.hexdigest(token.to_s)
   end
 
+  def admin?
+    self.profile = 'ADMIN'
+  end
+
   protected
 
   def normalize_name

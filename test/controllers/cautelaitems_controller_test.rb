@@ -18,7 +18,7 @@ class CautelaitemsControllerTest < ActionController::TestCase
 
   test "should create cautelaitem" do
     assert_difference('Cautelaitem.count') do
-      post :create, cautelaitem: { cautela_id: @cautelaitem.cautela_id, material_id: @cautelaitem.material_id, quantidade: @cautelaitem.quantidade }
+      post :create, cautelaitem: {cautela_id: @cautelaitem.cautela_id, material_id: @cautelaitem.material_id, quantidade: @cautelaitem.quantidade}
     end
 
     assert_redirected_to cautelaitem_path(assigns(:cautelaitem))
@@ -35,7 +35,7 @@ class CautelaitemsControllerTest < ActionController::TestCase
   end
 
   test "should update cautelaitem" do
-    patch :update, id: @cautelaitem, cautelaitem: { cautela_id: @cautelaitem.cautela_id, material_id: @cautelaitem.material_id, quantidade: @cautelaitem.quantidade }
+    patch :update, id: @cautelaitem, cautelaitem: {cautela_id: @cautelaitem.cautela_id, material_id: @cautelaitem.material_id, quantidade: @cautelaitem.quantidade}
     assert_redirected_to cautelaitem_path(assigns(:cautelaitem))
   end
 

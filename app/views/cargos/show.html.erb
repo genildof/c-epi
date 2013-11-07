@@ -1,22 +1,27 @@
-<%= render :partial => 'layouts/messages', flash: flash  %>
+<% provide(:title, @cargo.nome) %>
 
-<p>
-  <strong>Nome:</strong>
-  <%= @cargo.nome %>
-</p>
+<div class="row">
+  <div class="span6 offset3">
 
-<p>
-  <strong>Periculosidade:</strong>
-  <%= @cargo.periculosidade %>
-</p>
+    <p>
+      <strong>Nome:</strong>
+      <%= @cargo.nome %>
+    </p>
 
-<p>
-  <b>Created at:</b>
-  <%= @cargo.created_at.strftime('%d/%m/%Y - %H:%M') %>
-</p>
+    <p>
+      <strong>Periculosidade:</strong>
+      <%= @cargo.periculosidade %>
+    </p>
 
-<div class="form-actions">
-  <%= link_to 'Editar', edit_cargo_path(@cargo), :class => 'btn' %>
-  <%= link_to 'Excluir', @cargo, method: :delete, data: {confirm: 'Confirma a exclusão?'}, :class => 'btn btn-danger' %>
-  <%= link_to 'Voltar', cargos_path, :class => 'btn' %>
+    <p>
+      <b>Created at:</b>
+      <%= @cargo.created_at.strftime('%d/%m/%Y - %H:%M') %>
+    </p>
+
+    <div class="form-actions">
+      <%= link_to 'Editar', edit_cargo_path(@cargo), :class => 'btn' %>
+      <%= link_to 'Excluir', @cargo, method: :delete, data: {confirm: 'Confirma a exclusão?'}, :class => 'btn btn-danger' %>
+      <%= link_to 'Voltar', cargos_path, :class => 'btn' %>
+    </div>
+  </div>
 </div>

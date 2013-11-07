@@ -18,7 +18,7 @@ class FabricasControllerTest < ActionController::TestCase
 
   test "should create fabrica" do
     assert_difference('Fabrica.count') do
-      post :create, fabrica: { estado: @fabrica.estado, nome: @fabrica.nome }
+      post :create, fabrica: {estado: @fabrica.estado, nome: @fabrica.nome}
     end
 
     assert_redirected_to fabrica_path(assigns(:fabrica))
@@ -35,7 +35,7 @@ class FabricasControllerTest < ActionController::TestCase
   end
 
   test "should update fabrica" do
-    patch :update, id: @fabrica, fabrica: { estado: @fabrica.estado, nome: @fabrica.nome }
+    patch :update, id: @fabrica, fabrica: {estado: @fabrica.estado, nome: @fabrica.nome}
     assert_redirected_to fabrica_path(assigns(:fabrica))
   end
 

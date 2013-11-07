@@ -18,7 +18,7 @@ class CargosControllerTest < ActionController::TestCase
 
   test "should create cargo" do
     assert_difference('Cargo.count') do
-      post :create, cargo: { nome: @cargo.nome, periculosidade: @cargo.periculosidade }
+      post :create, cargo: {nome: @cargo.nome, periculosidade: @cargo.periculosidade}
     end
 
     assert_redirected_to cargo_path(assigns(:cargo))
@@ -35,7 +35,7 @@ class CargosControllerTest < ActionController::TestCase
   end
 
   test "should update cargo" do
-    patch :update, id: @cargo, cargo: { nome: @cargo.nome, periculosidade: @cargo.periculosidade }
+    patch :update, id: @cargo, cargo: {nome: @cargo.nome, periculosidade: @cargo.periculosidade}
     assert_redirected_to cargo_path(assigns(:cargo))
   end
 

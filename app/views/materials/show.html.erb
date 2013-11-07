@@ -1,22 +1,27 @@
-<%= render :partial => 'layouts/messages', flash: flash  %>
+<% provide(:title, @material.nome) %>
 
-<p>
-  <strong>Tipo:</strong>
-  <%= @material.tipo %>
-</p>
+<div class="row">
+  <div class="span6 offset3">
 
-<p>
-  <strong>Codigo:</strong>
-  <%= @material.codigo %>
-</p>
+    <p>
+      <strong>Tipo:</strong>
+      <%= @material.tipo %>
+    </p>
 
-<p>
-  <strong>Nome:</strong>
-  <%= @material.nome %>
-</p>
+    <p>
+      <strong>Codigo:</strong>
+      <%= @material.codigo %>
+    </p>
 
-<div class="form-actions">
-  <%= link_to 'Editar', edit_material_path(@material), :class => 'btn' %>
-  <%= link_to 'Excluir', @material, method: :delete, data: {confirm: 'Confirma a exclusão?'}, :class => 'btn btn-danger' %>
-  <%= link_to 'Voltar', materials_path, :class => 'btn' %>
+    <p>
+      <strong>Nome:</strong>
+      <%= @material.nome %>
+    </p>
+
+    <div class="form-actions">
+      <%= link_to 'Editar', edit_material_path(@material), :class => 'btn' %>
+      <%= link_to 'Excluir', @material, method: :delete, data: {confirm: 'Confirma a exclusão?'}, :class => 'btn btn-danger' %>
+      <%= link_to 'Voltar', materials_path, :class => 'btn' %>
+    </div>
+  </div>
 </div>
