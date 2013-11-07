@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
   end
 
   def create
+    # pay attention to downcase sufix at next line, this can cause invalid user on sign in.
     user = User.find_by(username: params[:session][:username].downcase)
     if user && user.authenticate(params[:session][:password])
       sign_in user

@@ -16,7 +16,7 @@
 
         <p>
           <strong>Operador:</strong>
-          <%= @cautela.user.nome %>
+          <%= @cautela.user.name %>
         </p>
 
         <p>
@@ -46,8 +46,6 @@
             <%= f.text_area :comentarios, :rows => 2, :cols => 70 %>
           </div>
         </div>
-        <br>
-        <%= render :partial => 'layouts/messages', flash: flash %>
 
       </div>
 

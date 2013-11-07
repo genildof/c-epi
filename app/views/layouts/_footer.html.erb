@@ -4,13 +4,13 @@
     by CIPA Campinas
   </small>
 
-  <% unless !signed_in? %>
-      <nav>
-        <ul>
-          <li><%= link_to 'CIPA Campinas', root_path %></li>
-          <li><%= link_to 'Sobre', about_path %></li>
-          <li><%= link_to 'Rodadmap', about_path %></li>
-        </ul>
-      </nav>
-  <% end %>
+  <nav>
+    <ul>
+      <li><%= link_to 'Sobre', about_path %></li>
+      <li><%= link_to 'Contato', contact_path %></li>
+      <% unless !signed_in? %>
+          <li><%= link_to 'Roadmap', roadmap_path %></li>
+      <% end %>
+    </ul>
+  </nav>
 </footer>

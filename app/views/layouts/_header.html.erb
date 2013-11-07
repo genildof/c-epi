@@ -7,36 +7,37 @@
           <% if signed_in? %>
 
               <li><%= link_to "Home", root_path %></li>
+              <li><%= link_to 'Cautelas', cautelas_path %></li>
+              <li><%= link_to 'Colaboradores', colaboradors_path %></li>
+
+              <% if (current_user.advanced? || current_user.admin?) %>
+                  <li id="fat-menu" class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      Configurações <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><%= link_to 'Cidades', cidades_path %></li>
+                      <li><%= link_to 'Materiais', materials_path %></li>
+                      <% if current_user.admin? %>
+                          <li class="divider"></li>
+                          <li><%= link_to 'Cargos', cargos_path %></li>
+                          <li><%= link_to 'Fábricas', fabricas_path %></li>
+                          <li><%= link_to 'Usuários', users_path %></li>
+                      <% end %>
+                    </ul>
+                  </li>
+              <% end %>
+
               <li><%= link_to "Ajuda", help_path %></li>
 
               <li id="fat-menu" class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  Configurações <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><%= link_to 'Cautela', cautelas_path %></li>
-                  <li><%= link_to 'Material', materials_path %></li>
-                  <li><%= link_to 'Colaborador', colaboradors_path %></li>
-                  <li class="divider"></li>
-                  <li><%= link_to 'Usuário', users_path %></li>
-                  <li><%= link_to 'Cargo', cargos_path %></li>
-                  <li><%= link_to 'Cidade', cidades_path %></li>
-                  <li><%= link_to 'Fábrica', fabricas_path %></li>
-                </ul>
-              </li>
-
-
-              <li id="fat-menu" class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  Conta <b class="caret"></b>
+                  <%= current_user.username %> <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
                   <li><%= link_to "Perfil", current_user %></li>
                   <li><%= link_to "Alterar senha", edit_user_path(current_user) %></li>
-                  <li class="divider"></li>
-                  <li>
-                    <%= link_to "Logout", signout_path, method: 'delete' %>
-                  </li>
+                  <li><%= link_to "Logout", signout_path, method: 'delete' %></li>
                 </ul>
               </li>
           <% else %>

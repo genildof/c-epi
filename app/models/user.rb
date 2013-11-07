@@ -31,6 +31,10 @@ class User < ActiveRecord::Base
     self.profile = 'ADMIN'
   end
 
+  def advanced?
+    self.profile = 'ADVANCED'
+  end
+
   protected
 
   def normalize_name

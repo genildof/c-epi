@@ -6,6 +6,9 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :set_cidades, only: [:new, :create, :edit, :update]
 
+
+  # flash possibilities: success, notice, alert, error
+
   # GET /users
   # GET /users.json
   def index
@@ -32,7 +35,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'Usuário criado com sucesso.' }
+        format.html { redirect_to @user, success: 'Usuário criado com sucesso.' }
         format.json { render action: 'show', status: :created, location: @user }
       else
         format.html { render action: 'new' }
@@ -46,7 +49,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'Usuário atualizado com sucesso.' }
+        format.html { redirect_to @user, success: 'Usuário atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render 'edit' }
@@ -63,7 +66,7 @@ class UsersController < ApplicationController
       flash[:success] = 'Exclusão efetuada com sucesso.'
     rescue ActiveRecord::DeleteRestrictionError => e
       #print "An error occurred: ",$!, "\n"
-      flash[:alert] = 'O registro possui referências em outra(s) tabela(s) e não pode ser excluído.'
+      flash[:error] = 'O registro possui referências em outra(s) tabela(s) e não pode ser excluído.'
     ensure
       respond_to do |format|
         format.html { redirect_to users_path }
@@ -91,11 +94,21 @@ class UsersController < ApplicationController
 
   def correct_user
     @user = User.find(params[:id])
-    redirect_to(root_url) unless current_user?(@user)
+    if current_user.admin?
+       return
+    elsif !current_user?(@user)
+      flash[:error] = 'Sem permissão para alteração de dados de outro usuário.'
+      redirect_to(root_url)
+    end
+    #redirect_to(root_url) unless current_user?(@user)
   end
 
   def admin_user
-    redirect_to(root_url) unless current_user.admin?
+    if !current_user.admin?
+      flash[:error] = 'Usuário sem privilégios para esta ação.'
+      redirect_to(root_url)
+    end
+    #redirect_to(root_url) unless current_user.admin?
   end
 end
 

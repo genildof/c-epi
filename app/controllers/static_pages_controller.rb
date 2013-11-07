@@ -10,6 +10,9 @@ class StaticPagesController < ApplicationController
   def about
   end
 
+  def roadmap
+  end
+
   def contact
   end
 
