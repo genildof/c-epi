@@ -8,13 +8,18 @@
     </p>
 
     <p>
-      <strong>Login:</strong>
+      <strong>Username:</strong>
       <%= @user.username %>
     </p>
 
     <p>
       <strong>Password:</strong>
       <%= @user.password %>
+    </p>
+
+    <p>
+      <strong>Email:</strong>
+      <%= @user.email %>
     </p>
 
     <p>
@@ -27,9 +32,9 @@
       <%= @user.cidade.nome %>
     </p>
 
-    <% if current_user.admin? %>
+    <% if admin? %>
         <div class="form-actions">
-          <%= link_to 'Editar', edit_user_path(@user), :class => 'btn' %>
+          <%= link_to 'Editar', edit_user_path(@user), :class => 'btn btn-default' %>
           <%= link_to 'Excluir', @user, method: :delete, data: {confirm: 'Confirma a exclusão?'}, :class => 'btn btn-danger' %>
           <%= link_to 'Voltar', users_path, :class => 'btn btn-primary' %>
         </div>

@@ -48,9 +48,11 @@ class CautelasController < ApplicationController
   # POST /cautelas.json
   def create
     @cautela = Cautela.new(cautela_params)
+    @cautela.user = current_user
+    @cautela.data = Time.now
     respond_to do |format|
       if @cautela.save
-        format.html { redirect_to @cautela, notice: 'Cautela criada com sucesso, adicione agora os itens.' }
+        format.html { redirect_to @cautela, notice: 'Cautela criada com sucesso, adicione agora os materiais à lista.' }
         format.json { render action: 'additem', status: :created, location: @cautela }
       else
         format.html { render action: 'new' }

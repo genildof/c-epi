@@ -15,6 +15,31 @@ class Cautela < ActiveRecord::Base
   accepts_nested_attributes_for :cautelaitems, :allow_destroy => true, :reject_if => lambda { |a| a[:quantidade].blank? }
 
 
+  public
+
+  # Some rules for view controls visibility
+
+  # Cautela has child items
+  def has_itens?
+    #!self.cautelaitems.count.nil
+    self.cautelaitems.any?   #<-- verificar por que retorna falsa condição
+  end
+
+  # Cautela has a digital signed version of the document
+  def is_valid?
+    !self.anexo.blank?
+  end
+
+  # Only not validated can be updated and receive new itens
+  def can_update?
+    !is_valid?
+  end
+
+  # Only if not valid and must have at least one item
+  def can_validate?
+    can_update? & has_itens?
+  end
+
   protected
 
   # Index page search function
@@ -32,30 +57,6 @@ class Cautela < ActiveRecord::Base
         csv << cautela.attributes.values_at(*column_names)
       end
     end
-  end
-
-  public
-
-  # Some rules for view controls visibility
-
-  # Cautela has child items
-  def has_itens?
-    !self.cautelaitems.empty?
-  end
-
-  # Cautela has a digital signed version of the document
-  def is_valid?
-    !self.anexo.blank?
-  end
-
-  # Only not validated can be updated and receive new itens
-  def can_update?
-    !self.is_valid?
-  end
-
-  # Only if not valid and must have at least one item
-  def can_validate?
-    !self.is_valid? && self.has_itens?
   end
 
 end

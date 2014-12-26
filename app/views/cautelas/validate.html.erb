@@ -23,40 +23,31 @@
           <strong>Data:</strong>
           <%= @cautela.data %>
         </p>
+      </div>
 
+      <div class="span7">
         <div class="control-group">
           <%= f.label :status, :class => 'control-label' %>
           <div class="controls">
             <%= f.select :status, %w(ARQUIVO_LOCAL ENVIADO_CDOC) %>
           </div>
         </div>
-
-
-        <div class="control-group">
-          <strong>Upload da cautela assinada pelo colaborador (PDF):</strong>
-
-          <div>
-            <%= f.file_field :anexo %>
-          </div>
-        </div>
-
         <div class="control-group">
           <%= f.label :comentarios, :class => 'control-label' %>
           <div class="controls">
             <%= f.text_area :comentarios, :rows => 2, :cols => 70 %>
           </div>
         </div>
-
-      </div>
-
-      <div class="span7">
-        <%= render :partial => 'cautelaitems', locals: {:validating => true} %>
+        <div class="control-group">
+          <p>Upload do documento assinado (PDF)</p>
+          <%= f.file_field :anexo %>
+        </div>
       </div>
     </div>
 
     <div class="form-actions">
-      <%= link_to 'Voltar', cautelas_path, :class => 'btn' %>
-      <%= f.submit 'Enviar', :class => 'btn btn-primary' %>
+      <%= link_to 'Voltar', cautelas_path, :class => 'btn btn-small' %>
+      <%= f.submit 'Enviar', :class => 'btn btn-small btn-primary' %>
     </div>
 
 

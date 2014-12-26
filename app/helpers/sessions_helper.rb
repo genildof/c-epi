@@ -11,6 +11,22 @@ module SessionsHelper
     !current_user.nil?
   end
 
+  def admin?
+    if !current_user.nil?
+      current_user.profile == "ADMIN"
+    else
+      false
+    end
+  end
+
+  def advanced?
+    if !current_user.nil?
+      current_user.profile == "ADVANCED"
+    else
+      false
+    end
+  end
+
   def current_user=(user)
     @current_user = user
   end

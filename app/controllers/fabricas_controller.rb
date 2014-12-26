@@ -28,7 +28,7 @@ class FabricasController < ApplicationController
 
     respond_to do |format|
       if @fabrica.save
-        format.html { redirect_to @fabrica, notice: 'Fabrica was successfully created.' }
+        format.html { redirect_to @fabrica, notice: 'Fabrica criada com sucesso.' }
         format.json { render action: 'show', status: :created, location: @fabrica }
       else
         format.html { render action: 'new' }
@@ -42,7 +42,7 @@ class FabricasController < ApplicationController
   def update
     respond_to do |format|
       if @fabrica.update(fabrica_params)
-        format.html { redirect_to @fabrica, notice: 'Fabrica was successfully updated.' }
+        format.html { redirect_to @fabrica, notice: 'Fabrica atualizada com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

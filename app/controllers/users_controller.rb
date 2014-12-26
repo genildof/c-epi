@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
@@ -15,8 +16,6 @@ class UsersController < ApplicationController
     @users = User.search(params[:search], params[:page])
   end
 
-  # GET /users/1
-  # GET /users/1.json
   def show
   end
 
@@ -94,8 +93,8 @@ class UsersController < ApplicationController
 
   def correct_user
     @user = User.find(params[:id])
-    if current_user.admin?
-       return
+    if admin?
+      true
     elsif !current_user?(@user)
       flash[:error] = 'Sem permissão para alteração de dados de outro usuário.'
       redirect_to(root_url)
@@ -104,8 +103,8 @@ class UsersController < ApplicationController
   end
 
   def admin_user
-    if !current_user.admin?
-      flash[:error] = 'Usuário sem privilégios para esta ação.'
+    if !admin?
+      flash[:error] = 'Ação não autorizada para o usuário atual.'
       redirect_to(root_url)
     end
     #redirect_to(root_url) unless current_user.admin?

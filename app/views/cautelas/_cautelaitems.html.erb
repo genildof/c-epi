@@ -1,14 +1,12 @@
-<% if @cautela.can_update? %>
-    <strong>Items em Cautela (<%= @cautela.cautelaitems.sum(:quantidade) %>)</strong>
-<% end %>
+<span class="badge badge-important pull-right"><%= pluralize(@cautela.cautelaitems.sum(:quantidade), 'item') %></span>
 
 <table class='table table-condensed'>
   <thead>
   <tr>
-    <th>Tipo</th>
     <th>Código</th>
+    <th>Tipo</th>
     <th>Descrição</th>
-    <th>CA/NS</th>
+    <th>CA ou Serial</th>
     <th>Validade</th>
     <th>Quantidade</th>
     <% if @cautela.can_update? & !validating %>
@@ -19,49 +17,20 @@
   <tbody>
   <% @cautela.cautelaitems.each do |item| %>
       <tr>
-        <td><%= item.material.tipo %></td>
         <td><%= item.material.codigo %></td>
+        <td><%= item.material.tipo %></td>
         <td><%= item.material.nome %></td>
         <td><%= item.serial %></td>
         <td><%= item.validade %></td>
         <td><%= item.quantidade %></td>
         <% if @cautela.can_update? & !validating %>
-            <td><%= link_to 'Excluir', [item.cautela, item], method: :delete, data: {confirm: 'Excluir?'}, :class => 'btn btn-mini btn-danger' %></td>
+            <td>
+              <%= link_to [item.cautela, item], method: :delete do %>
+                  <i class="icon-trash" title="Remover"></i>
+              <% end %>
+            </td>
         <% end %>
       </tr>
   <% end %>
   </tbody>
 </table>
-
-<% if (@cautela.can_update? & !validating) %>
-    <div class='alert alert-info'>
-      <strong>Adicionar</strong>
-
-      <p/>
-      <%= form_for([@cautela, @cautela.cautelaitems.build]) do |g| %>
-          <div class="row">
-            <div class='span4'>
-              Material:
-              <%= g.select :material_id, @materials.collect { |a| [a.nome, a.id] }, :size => 100 %>
-            </div>
-            <div class='span4'>
-              CA ou Serial:
-              <%= g.text_field :serial %>
-            </div>
-          </div>
-          <div class="row">
-            <div class='span6'>
-              Validade:
-              <%= g.date_select :validade, {:order => [:day, :month, :year], :prompt => {:day => 'Select day', :month => 'Select month', :year => 'Select year'}}, {:class => 'date-select'} %>
-            </div>
-          </div>
-          <div class="row">
-            <div class='span6'>
-              Quantidade:
-              <%= g.number_field :quantidade, :min => 1, :size => 10 %>
-            </div>
-            <%= g.submit 'Incluir', :class => 'btn' %>
-          </div>
-      <% end %>
-    </div>
-<% end %>

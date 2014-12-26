@@ -1,26 +1,29 @@
+//$navbar-default-bg: #312312;
+//$light-orange: #ff8c00;
+//$navbar-default-color: $light-orange;
+
 @import "bootstrap";
-@import "bootstrap-responsive";
+@import "bootstrap/theme";
 
 @media screen {
 
-/* mixins, variables, etc. */
+/*
+Custom CSS for...
+'Modern Business' HTML Theme by Start Bootstrap
 
-  $grayMediumLight: #eaeaea;
+All Start Bootstrap themes are licensed under Apache 2.0.
+For more info and more free Bootstrap 3 HTML themes, visit http://startbootstrap.com!
+*/
 
-  @mixin box_sizing {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-
-/* universal */
+/* Global Styles */
 
   html {
     overflow-y: scroll;
   }
 
   body {
-    padding-top: 60px;
+    height: 100%;
+    padding-top: 70px;
   }
 
   section {
@@ -38,157 +41,58 @@
     }
   }
 
-/* typography */
-
-  h1, h2, h3, h4, h5, h6 {
-    line-height: 1;
-  }
-
-  h1 {
-    font-size: 3em;
-    letter-spacing: -2px;
-    margin-bottom: 30px;
-    text-align: center;
-  }
-
-  h2 {
-    font-size: 1.2em;
-    letter-spacing: -1px;
-    margin-bottom: 30px;
-    text-align: center;
-    font-weight: normal;
-    color: $grayLight;
-  }
-
-  p {
-    font-size: 1.1em;
-    line-height: 1.7em;
-  }
-
-/* header */
-
-  #logo {
-    float: left;
-    margin-right: 10px;
-    font-size: 1.7em;
-    color: white;
-    text-transform: uppercase;
-    letter-spacing: -1px;
-    padding-top: 9px;
-    font-weight: bold;
-    line-height: 1;
-    &:hover {
-      color: white;
-      text-decoration: none;
-    }
-  }
-
-/* footer */
-
-  footer {
-    margin-top: 45px;
-    padding-top: 5px;
-    border-top: 1px solid $grayMediumLight;
-    color: $grayLight;
-    a {
-      color: $gray;
-      &:hover {
-        color: $grayDarker;
-      }
-    }
-    small {
-      float: left;
-    }
-    ul {
-      float: right;
-      list-style: none;
-      li {
-        float: left;
-        margin-left: 10px;
-      }
-    }
-  }
-
 /* miscellaneous */
+
+/* Genildo: This is very very important, solves Navbar dropdowns don't work in IE8, on Win
+https://github.com/twbs/bootstrap/issues/6548 */
+
+  .navbar-inverse .nav li.dropdown.open>.dropdown-toggle, .navbar-inverse .nav
+  li.dropdown.active>.dropdown-toggle, .navbar-inverse .nav
+  li.dropdown.open.active>.dropdown-toggle,
+  .navbar, .navbar-inverse .navbar-inner {
+    filter: none;
+  }
+
+/* Genildo: The context classes for badge are indeed removed from Bootstrap 3, so you'd have to add
+some custom CSS to create the same effect like... */
+
+  .badge-important {
+    background-color: #b94a48;
+  }
+
+// Colors
+// Contextual variations of badges
+// Bootstrap 3.0 removed contexts for badges, we re-introduce them, based on what is done for labels
+  .badge-default {
+    @include label-variant($label-default-bg);
+  }
+
+  .badge-primary {
+    @include label-variant($label-primary-bg);
+  }
+
+  .badge-success {
+    @include label-variant($label-success-bg);
+  }
+
+  .badge-info {
+    @include label-variant($label-info-bg);
+  }
+
+  .badge-warning {
+    @include label-variant($label-warning-bg);
+  }
+
+  .badge-danger {
+    @include label-variant($label-danger-bg);
+  }
 
   .debug_dump {
     clear: both;
     float: left;
     width: 100%;
     margin-top: 45px;
-    @include box_sizing;
-  }
-
-/* sidebar */
-
-  aside {
-    section {
-      padding: 10px 0;
-      border-top: 1px solid $grayLighter;
-      &:first-child {
-        border: 0;
-        padding-top: 0;
-      }
-      span {
-        display: block;
-        margin-bottom: 3px;
-        line-height: 1;
-      }
-      h1 {
-        font-size: 1.4em;
-        text-align: left;
-        letter-spacing: -1px;
-        margin-bottom: 3px;
-        margin-top: 0px;
-      }
-    }
-  }
-
-  .gravatar {
-    float: left;
-    margin-right: 10px;
-  }
-
-  .stats {
-    overflow: auto;
-    a {
-      float: left;
-      padding: 0 10px;
-      border-left: 1px solid $grayLighter;
-      color: gray;
-      &:first-child {
-        padding-left: 0;
-        border: 0;
-      }
-      &:hover {
-        text-decoration: none;
-        color: $blue;
-      }
-    }
-    strong {
-      display: block;
-    }
-  }
-
-  .user_avatars {
-    overflow: auto;
-    margin-top: 10px;
-    .gravatar {
-      margin: 1px 1px;
-    }
-  }
-
-/* forms */
-
-  input, textarea, select, .uneditable-input {
-    border: 1px solid #bbb;
-    width: 100%;
-    margin-bottom: 15px;
-    @include box_sizing;
-  }
-
-  input {
-    height: auto !important;
+    //@include box_sizing;
   }
 
   #error_explanation {
@@ -202,21 +106,6 @@
   .field_with_errors {
     @extend .control-group;
     @extend .error;
-  }
-
-/* Users index */
-
-  .users {
-    list-style: none;
-    margin: 0;
-    li {
-      overflow: auto;
-      padding: 10px 0;
-      border-top: 1px solid $grayLighter;
-      &:last-child {
-        border-bottom: 1px solid $grayLighter;
-      }
-    }
   }
 
 /* Date-Select component */

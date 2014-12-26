@@ -27,14 +27,6 @@ class User < ActiveRecord::Base
     Digest::SHA1.hexdigest(token.to_s)
   end
 
-  def admin?
-    self.profile = 'ADMIN'
-  end
-
-  def advanced?
-    self.profile = 'ADVANCED'
-  end
-
   protected
 
   def normalize_name

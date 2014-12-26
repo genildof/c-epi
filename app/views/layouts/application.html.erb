@@ -1,22 +1,30 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html> <!-- This line makes twiteer bootstrap working on IE -->
+<html lang="en">
 <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
   <title><%= full_title(yield(:title)) %></title>
   <%= stylesheet_link_tag 'application', media: 'screen', 'data-turbolinks-track' => true %>
+  <!-- Loads core JavaScript -->
+  <!-- Placed at the end of the document so the pages load faster -->
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <%= stylesheet_link_tag 'printing', media: 'print' %>
+  <!--%= stylesheet_link_tag 'printing', media: 'print' %-->
   <%= render 'layouts/shim' %>
 </head>
 <body>
-<%= render 'layouts/header' %>
-<div class="container">
+<div class=" container">
+  <%= render 'layouts/header' %>
   <% flash.each do |key, value| %>
       <div class="alert alert-<%= key %>"><%= value %></div>
   <% end %>
   <%= yield %>
+  <%= debug(params) if (Rails.env.development? & admin?) %>
   <%= render 'layouts/footer' %>
-  <%= debug(params) if Rails.env.development? && (signed_in? && current_user.admin?) %>
 </div>
 </body>
 </html>

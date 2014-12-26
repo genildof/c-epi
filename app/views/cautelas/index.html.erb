@@ -1,22 +1,36 @@
+<!-- How to build buttons with images...
+
+%= link_to 'Excluir', cautela, method: :delete, data: {confirm: 'Confirma a exclusão?'}, :class => 'btn btn-mini btn-danger'%>
+%= link_to cautela, method: :delete, data: {confirm: 'Confirma a exclusão?'}, :class => 'btn btn-mini btn-danger' do %>
+              <i class="icon-trash icon-white"></i>
+              %= t('Excluir').html_safe %>
+% end %>
+
+-->
+
 <% provide(:title, 'Cautelas') %>
 
-<h1>Cautelas (<%= @cautelas.count %>)</h1>
+<ul class="nav nav-pills nav-stacked">
+  <li class="active">
+    <span class="badge badge-important pull-right"><%= pluralize(@cautelas.count, 'registro') %></span>
+
+    <h2>Cautelas</h2>
+    </a>
+  </li>
+</ul>
 
 <%= render :partial => 'layouts/tablesearch', locals: {:path => cautelas_path, :placeholder => 'Colaborador'} %>
 
-<table class="table table-striped"> <!-- table-condensed -->
+<%= will_paginate @cautelas, renderer: BootstrapPagination::Rails %>
 
-  <div class="pagination">  <!-- Try apple_pagination, digg_pagination -->
-    <%= will_paginate(@cautelas, renderer: BootstrapPagination::Rails) %>
-  </div>
-
+<table class="table table-condensed table-striped"> <!-- table-condensed -->
   <thead>
   <tr>
     <th>#</th>
     <th>Colaborador</th>
     <th>Operador</th>
     <th>Data</th>
-    <th>Doc</th>
+    <th>DOC</th>
     <th>Status</th>
     <th>Items</th>
     <th></th>
@@ -30,14 +44,26 @@
         <td><%= link_to cautela.colaborador.nome, cautela, :class => 'btn btn-link' %></td>
         <td><%= cautela.user.name %></td>
         <td><%= cautela.data %></td>
-        <td><%= image_tag 'bullet.png' if !cautela.is_valid? %></td>
+        <td>
+          <% if cautela.is_valid? %>
+              <span class="badge badge-success">OK</span>
+          <% else %>
+              <i class="glyphicon glyphicon-warning-sign" title="Cautela não validada"></i>
+          <% end %>
+        </td>
         <td><%= cautela.status %></td>
         <td><%= cautela.cautelaitems.count %></td>
-        <td><%= link_to 'Excluir', cautela, method: :delete, data: {confirm: 'Confirma a exclusão?'}, :class => 'btn btn-mini btn-danger' %></td>
+        <td>
+          <%= link_to cautela, method: :delete, data: {confirm: 'Confirma a exclusão?'} do %>
+              <i class="glyphicon glyphicon-trash" title="Remover"></i>
+          <% end %>
+        </td>
       </tr>
   <% end %>
   </tbody>
 </table>
 
-<%= link_to 'Nova Cautela', new_cautela_path, :class => 'btn' %>
-<%= link_to 'CSV Download', cautelas_path(:format => :csv), :class => 'btn' %>
+<%= link_to 'Nova Cautela', new_cautela_path, :class => 'btn btn-primary btn-sm' %>
+<%= link_to cautelas_path(:format => :csv), :class => 'pull-right' do %>
+    <span class="glyphicon glyphicon-download-alt" title="CSV Export"></span>
+<% end %>

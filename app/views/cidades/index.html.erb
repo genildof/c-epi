@@ -1,6 +1,14 @@
 <% provide(:title, 'Cidades') %>
 
-<h1>Cidades (<%= @cidades.count %>)</h1>
+<ul class="nav nav-pills nav-stacked">
+  <li class="active">
+    <span class="badge pull-right"><%= @cidades.count %></span>
+    <span class="glyphicon glyphicon-search"></span>
+
+    <h3>Cidades</h3>
+    </a>
+  </li>
+</ul>
 
 <%= render :partial => 'layouts/tablesearch', locals: {:path => cidades_path, :placeholder => 'Cidade'} %>
 
@@ -30,11 +38,11 @@
         <td><%= cidade.fabrica.nome %></td>
         <td><%= cidade.colaboradors.count %></td>
         <td><%= cidade.created_at.strftime('%d/%m/%Y') %></td>
-        <td><%= link_to 'Editar', edit_cidade_path(cidade), :class => 'btn btn-mini' %></td>
-        <td><%= link_to 'Excluir', cidade, method: :delete, data: {confirm: 'Confirma a exclusão?'}, :class => 'btn btn-mini btn-danger' %></td>
+        <td><%= link_to 'Editar', edit_cidade_path(cidade), :class => 'btn btn-default btn-xs' %></td>
+        <td><%= link_to 'Excluir', cidade, method: :delete, data: {confirm: 'Confirma a exclusão?'}, :class => 'btn btn-danger btn-xs' %></td>
       </tr>
   <% end %>
   </tbody>
 </table>
 
-<%= link_to 'Nova Cidade', new_cidade_path, :class => 'btn' %>
+<%= link_to 'Nova Cidade', new_cidade_path, :class => 'btn btn-default' %>

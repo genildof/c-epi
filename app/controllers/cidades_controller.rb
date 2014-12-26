@@ -37,7 +37,7 @@ class CidadesController < ApplicationController
     @cidade = Cidade.new(cidade_params)
     respond_to do |format|
       if @cidade.save
-        format.html { redirect_to @cidade, notice: 'Cidade was successfully created.' }
+        format.html { redirect_to @cidade, notice: 'Cidade criada com sucesso.' }
         format.json { render action: 'show', status: :created, location: @cidade }
       else
         format.html { render action: 'new' }
@@ -51,7 +51,7 @@ class CidadesController < ApplicationController
   def update
     respond_to do |format|
       if @cidade.update(cidade_params)
-        format.html { redirect_to @cidade, notice: 'Cidade was successfully updated.' }
+        format.html { redirect_to @cidade, notice: 'Cidade atualizada com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

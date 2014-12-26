@@ -3,7 +3,15 @@ ruby '2.0.0'
 #ruby-gemset=railstutorial_rails_4_0
 
 gem 'rails', '4.0.1'
-gem 'bootstrap-sass', '2.3.2.2'
+
+# bootstrap 3.0
+
+gem 'bootstrap-sass' #, :git => 'git://github.com/thomas-mcdonald/bootstrap-sass.git', :branch => '3'
+#gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails', :github => 'anjlab/bootstrap-rails'
+
+# and form_for used for bootstrap 3.0
+# gem 'twitter_bootstrap_form_for'
+
 gem 'bcrypt-ruby', '3.1.2'
 gem 'will_paginate', '3.0.5'
 gem 'will_paginate-bootstrap', '1.0.0'
@@ -19,7 +27,7 @@ gem 'figaro', '0.7.0'
 gem 'high_voltage', '2.0.0'
 
 gem 'to_csv-rails', '0.1.5'
-gem 'simple_form', '3.0.0'
+#gem 'simple_form', '3.0.0'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'
@@ -33,7 +41,7 @@ group :test do
   gem 'capybara', '2.1.0'
   gem 'factory_girl_rails', '4.2.0'
   gem 'cucumber-rails', '1.3.0', :require => false
-  gem 'database_cleaner', github: 'bmabey/database_cleaner'
+  gem 'database_cleaner' #, github: 'bmabey/database_cleaner'
 
   # Uncomment this line on OS X.
   # gem 'growl', '1.0.3'

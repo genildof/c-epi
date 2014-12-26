@@ -1,18 +1,22 @@
 <% provide(:title, @cautela.colaborador.nome) %>
 
-<%= image_tag 'okay.png' if @cautela.is_valid? %>
-
-<p/>
+<p>
+  <% if @cautela.is_valid? %>
+      <span class="badge badge-success pull-right">Cautela validada mediante documento assinado</span>
+  <% else %>
+      <span class="badge badge-warning pull-right">Cautela não foi validada</span>
+  <% end %>
+</p>
 
 <div class="row">
-  <div class="span4">
+  <div class="span6">
     <p>
       <strong>Colaborador:</strong>
       <%= @cautela.colaborador.nome %>
     </p>
 
     <p>
-      <strong>user:</strong>
+      <strong>Usuário:</strong>
       <%= @cautela.user.name %>
     </p>
 
@@ -24,32 +28,83 @@
     <p><strong>Status:</strong>
       <%= @cautela.status %>
     </p>
-
+  </div>
+  <div class="span6">
     <p>
       <strong>Comentarios:</strong>
       <%= @cautela.comentarios %>
     </p>
 
     <p>
-      <strong>Anexos:</strong>
+      <strong>Anexo:</strong>
     </p>
 
-    <p>
-      <%= link_to image_tag('pdf_icon.png'), @cautela.anexo.url, :format => 'pdf', :target => '_blank' if @cautela.is_valid? %>
-    </p>
-
-    <br>
-
-  </div>
-  <div class="span8">
-    <% validating = false %> <!-- How to pass variable to partial, attention to render :partial => 'cautelaitems', just works by this way -->
-    <%= render :partial => 'cautelaitems', locals: {cautela: @cautela, :validating => t(validating)} %>
+    <%= link_to image_tag('pdf_icon.png'), @cautela.anexo.url, :format => 'pdf', :target => '_blank' if @cautela.is_valid? %>
   </div>
 </div>
 
+<% validating = false %> <!-- How to pass variable to partial, attention to render :partial => 'cautelaitems', just works by this way -->
+<%= render :partial => 'cautelaitems', locals: {cautela: @cautela, :validating => t(validating)} %>
+
+<% if (@cautela.can_update? & !validating) %>
+    <!-- Button trigger modal -->
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+      Launch demo modal
+    </button>
+<% end %>
+
+<br>
 <div class="form-actions">
-  <%= link_to 'Voltar', cautelas_path, :class => 'btn' %><!--Todo: implementar redirect_to :back -->
-  <%= link_to 'Validar', validate_cautela_path, :class => 'btn btn-primary' if @cautela.can_validate? %> <!--Todo: está validando sem itens -->
-  <%= link_to 'Editar', edit_cautela_path, :class => 'btn' if @cautela.can_validate? %>
-  <%= link_to 'Visualizar', print_cautela_path, :target => '_blank', :class => 'btn' if @cautela.can_validate? %>
+  <%= link_to 'Voltar', cautelas_path, :class => 'btn btn-default btn-sm' %>
+  <%= link_to 'Editar', edit_cautela_path, :class => 'btn btn-default btn-sm' if @cautela.can_update? %>
+  <%= link_to 'Validar', validate_cautela_path, :class => 'btn btn-primary btn-sm' if @cautela.can_validate? %>
+  <%= link_to 'Visualizar', print_cautela_path, :target => '_blank', :class => 'btn btn-default btn-sm' if @cautela.can_validate? %>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Selecione o novo item</h4>
+      </div>
+
+      <%= form_for([@cautela, @cautela.cautelaitems.build], :class => 'form-horizontal') do |g| %>
+
+          <div class="modal-body">
+            <div class="control-group">
+              <%= g.label 'Material', :class => 'control-label' %>
+              <div class="controls">
+                <%= g.select :material_id, @materials.collect { |a| [a.nome, a.id] }, :class => 'span3' %>
+              </div>
+            </div>
+            <div class="control-group">
+              <%= g.label 'CA ou Serial', :class => 'control-label' %>
+              <div class="controls">
+                <%= g.text_field :serial, :placeholder => 'CA ou Serial' %>
+              </div>
+            </div>
+            <div class="control-group">
+              <%= g.label 'Validade', :class => 'control-label' %>
+              <div class="controls">
+                <%= g.date_select :validade, {:order => [:day, :month, :year], :prompt => {:day => 'Select day', :month => 'Select month', :year => 'Select year'}}, {:class => 'date-select'} %>
+              </div>
+            </div>
+            <div class="control-group">
+              <%= g.label 'Qtde', :class => 'control-label' %>
+              <div class="controls">
+                <%= g.number_field :quantidade, :min => 1, :class => 'input-small', :placeholder => 'Qtde' %>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <%= g.submit 'Incluir', :class => 'btn btn-primary btn-sm', :type => 'button' %>
+              <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Fechar</button>
+            </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

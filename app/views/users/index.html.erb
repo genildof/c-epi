@@ -1,6 +1,14 @@
 <% provide(:title, 'Usuários') %>
 
-<h1>Usuários (<%= @users.count %>)</h1>
+<ul class="nav nav-pills nav-stacked">
+  <li class="active">
+    <span class="badge pull-right"><%= @users.count %></span>
+    <span class="glyphicon glyphicon-search"></span>
+
+    <h3>Usuários</h3>
+    </a>
+  </li>
+</ul>
 
 <%= render :partial => 'layouts/tablesearch', locals: {:path => users_path, :placeholder => 'Usuário'} %>
 
@@ -32,11 +40,11 @@
         <td><%= user.profile %></td>
         <td><%= user.cidade.nome %></td>
         <td><%= user.created_at.strftime('%d/%m/%Y') %></td>
-        <td><%= link_to 'Editar', edit_user_path(user), :class => 'btn btn-mini' %></td>
-        <td><%= link_to 'Excluir', user, method: :delete, data: {confirm: 'Confirma a exclusão?'}, :class => 'btn btn-mini btn-danger' %></td>
+        <td><%= link_to 'Editar', edit_user_path(user), :class => 'btn btn-default btn-xs' %></td>
+        <td><%= link_to 'Excluir', user, method: :delete, data: {confirm: 'Confirma a exclusão?'}, :class => 'btn btn-danger btn-xs' %></td>
       </tr>
   <% end %>
   </tbody>
 </table>
 
-<%= link_to 'Novo Usuário', new_user_path, :class => 'btn' %>
+<%= link_to 'Novo Usuário', new_user_path, :class => 'btn btn-default' %>

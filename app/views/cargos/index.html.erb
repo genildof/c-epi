@@ -1,4 +1,14 @@
-<h1>Cargos (<%= @cargos.count %>)</h1>
+<% provide(:title, 'Cargos') %>
+
+<ul class="nav nav-pills nav-stacked">
+  <li class="active">
+    <span class="badge pull-right"><%= @cargos.count %></span>
+    <span class="glyphicon glyphicon-search"></span>
+
+    <h3>Cargos</h3>
+    </a>
+  </li>
+</ul>
 
 <%= render :partial => 'layouts/tablesearch', locals: {:path => cargos_path, :placeholder => 'Cargo'} %>
 
@@ -26,12 +36,12 @@
         <td><%= link_to cargo.nome, cargo %></td>
         <td><%= cargo.periculosidade %></td>
         <td><%= cargo.created_at.strftime('%d/%m/%Y') %></td>
-        <td><%= link_to 'Editar', edit_cargo_path(cargo), :class => 'btn btn-mini' %></td>
-        <td><%= link_to 'Excluir', cargo, method: :delete, data: {confirm: 'Confirma a exclusão?'}, :class => 'btn btn-mini btn-danger' %></td>
+        <td><%= link_to 'Editar', edit_cargo_path(cargo), :class => 'btn btn-default btn-xs' %></td>
+        <td><%= link_to 'Excluir', cargo, method: :delete, data: {confirm: 'Confirma a exclusão?'}, :class => 'btn btn-danger btn-xs' %></td>
       </tr>
   <% end %>
   </tbody>
 </table>
 
 <br>
-<%= link_to 'Novo Cargo', new_cargo_path, :class => 'btn' %>
+<%= link_to 'Novo Cargo', new_cargo_path, :class => 'btn btn-default' %>

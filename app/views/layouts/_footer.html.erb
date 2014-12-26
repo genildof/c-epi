@@ -1,16 +1,10 @@
-<footer class="footer">
+<footer>
   <small>
-    <%= link_to 'C-EPI Application', root_path %>
-    by CIPA Campinas
+    <%= link_to 'C-EPI Application', root_path %> &copy; by CIPA Campinas &middot;
+    <%= link_to 'Sobre', about_path %> &middot;
+    <%= link_to 'Contato', contact_path %> &middot;
+    <% unless !signed_in? %>
+        <%= link_to 'Roadmap', roadmap_path %>
+    <% end %>
   </small>
-
-  <nav>
-    <ul>
-      <li><%= link_to 'Sobre', about_path %></li>
-      <li><%= link_to 'Contato', contact_path %></li>
-      <% unless !signed_in? %>
-          <li><%= link_to 'Roadmap', roadmap_path %></li>
-      <% end %>
-    </ul>
-  </nav>
 </footer>
